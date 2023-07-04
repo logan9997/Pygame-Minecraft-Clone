@@ -44,11 +44,13 @@ class Inventory(Rect):
                 ))
 
     def display(self):
+        rows = INVENTORY_WIDTH // INVENTORY_BOX_SIZE
+
         for i, item in enumerate(self.items):
             item = InventoryItem(**item)
             item.draw(
-                ((i+1) * INVENTORY_BOX_SIZE) + (SCREEN_WIDTH//2) - self.width//2,
-                self.ypos + INVENTORY_BOX_SIZE
+                ((i % rows) * INVENTORY_BOX_SIZE + self.xpos) + ((INVENTORY_BOX_SIZE // 2) - (item.width//2)),
+                ((i // rows) * INVENTORY_BOX_SIZE) + self.ypos + ((INVENTORY_BOX_SIZE // 2) - (item.height//2))
             )
 
     def select_item(self, mouse_pos:tuple[int]):
