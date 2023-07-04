@@ -1,0 +1,18 @@
+{
+    "items": [
+        {
+            "colour": [255, 100, 10],
+            "width": 30,
+            "height": 30,
+            "name": "wood",
+            "qty": 1
+        },
+        {
+            "colour": [2, 140, 10],
+            "width": 30,
+            "height": 30,
+            "name": "sand",
+            "qty": 1
+        }
+    ]
+}
