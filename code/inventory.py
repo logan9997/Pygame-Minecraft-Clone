@@ -33,6 +33,7 @@ class Inventory(Rect):
         self.open = False
         self.rows = INVENTORY_HEIGHT // INVENTORY_BOX_SIZE
         self.cols = INVENTORY_WIDTH // INVENTORY_BOX_SIZE
+        self.selected_item = None
 
     def load_inventory(self):
         with open(self._save_file, 'r') as inventory:
@@ -56,7 +57,6 @@ class Inventory(Rect):
                 ))
 
     def display(self):
-    
         for i in range(len(self.items)):
             for j in range(len(self.items[i])):
                 self.items[i][j].draw(
@@ -73,4 +73,13 @@ class Inventory(Rect):
 
         if len(self.items) > i:
             if len(self.items[i]) > j:
-                print(self.items[i][j], i, j)
+                if self.selected_item != self.items[i][j]:
+                    if self.selected_item != None:
+                        self.selected_item.width = (self.selected_item.width / 125) * 100
+                        self.selected_item.height = (self.selected_item.height / 125) * 100
+
+                    self.selected_item = self.items[i][j]
+                    self.selected_item.width *= 1.25
+                    self.selected_item.height *= 1.25
+
+                
