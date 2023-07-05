@@ -68,7 +68,9 @@ class Inventory(Rect):
         mouse_x = mouse_pos[0]
         mouse_y = mouse_pos[1]
 
-        box_x = (mouse_x // INVENTORY_BOX_SIZE) - ((SCREEN_WIDTH - INVENTORY_WIDTH) // 2) // INVENTORY_BOX_SIZE
-        box_y = ((2 * mouse_y) - SCREEN_HEIGHT + INVENTORY_HEIGHT) // (2 * INVENTORY_BOX_SIZE)
+        i = ((2 * mouse_y) - SCREEN_HEIGHT + INVENTORY_HEIGHT) // (2 * INVENTORY_BOX_SIZE)
+        j = (mouse_x // INVENTORY_BOX_SIZE) - ((SCREEN_WIDTH - INVENTORY_WIDTH) // 2) // INVENTORY_BOX_SIZE
 
-        print(box_x, box_y)
+        if len(self.items) > i:
+            if len(self.items[i]) > j:
+                print(self.items[i][j], i, j)
