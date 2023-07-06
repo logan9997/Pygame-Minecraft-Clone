@@ -24,6 +24,10 @@ class InventoryItem:
             xpos, ypos, self.width, self.height
         ))
 
+    def reset_item_size(self):
+        self.width = (self.width / 125) * 100
+        self.height = (self.height / 125) * 100
+
 
 class Inventory(Rect):
 
@@ -57,6 +61,15 @@ class Inventory(Rect):
                 ))
 
     def display(self):
+        for i in range(1, 3):
+            for j in range(1, 3):
+                pg.draw.rect(SCREEN, (50, 50*j, 50*i), pg.Rect(
+                    self.xpos + self.width,
+                    self.ypos,
+                    180,
+                    180
+                ))
+
         for i in range(len(self.items)):
             for j in range(len(self.items[i])):
                 self.items[i][j].draw(
@@ -75,11 +88,12 @@ class Inventory(Rect):
             if len(self.items[i]) > j:
                 if self.selected_item != self.items[i][j]:
                     if self.selected_item != None:
-                        self.selected_item.width = (self.selected_item.width / 125) * 100
-                        self.selected_item.height = (self.selected_item.height / 125) * 100
+                        self.selected_item.reset_item_size()
 
                     self.selected_item = self.items[i][j]
                     self.selected_item.width *= 1.25
                     self.selected_item.height *= 1.25
-
-                
+                else:
+                    self.selected_item.reset_item_size()
+                    self.selected_item = None
+                    
